@@ -1,0 +1,25 @@
+{% extends "home/index.html" %}
+{% load static %}
+
+{% block my_blog_title %}
+Accommodation
+{% endblock %}
+
+{% block my_blog_header %}
+
+
+
+
+{% endblock %}
+
+{% block my_blog_content %}
+    <div>
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" class="btn btn-primary" value="Guardar alojamiento" />
+        </form>
+    </div>
+    <!-- Divider-->
+    <hr class="my-4" />
+{% endblock %}
