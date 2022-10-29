@@ -1,17 +1,88 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Destinos</title>
+{% extends "home/index.html" %}
+{% load static %}
+
+{% block mochilas_viajeras_title %}
+Destinos list
+{% endblock %}
+
+
+{% block mochilas_viajeras_content %}
+</title>
+<!-- Favicon-->
+<link rel="icon" type="image/x-icon" href="{% static 'home/assets/favicon.ico' %}" />
+<!-- Font Awesome icons (free version)-->
+<script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+<!-- Google fonts-->
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+<link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+<!-- Core theme CSS (includes Bootstrap)-->
+<link href="{% static 'home/css/styles.css'%}" rel="stylesheet" />
 </head>
-<body>
-    <ul>
-        {% for destino in destinos %}
-        <li>{{ destino }}</li>
-        {% endfor %}
-    </ul>
-    
-</body>
-</html>
+<body id="page-top">
+<!-- Navigation-->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+    <div class="container">
+        <a class="navbar-brand" href="#page-top"><img src="assets/img/navbar-logo.svg" alt="..." /></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            Menu
+            <i class="fas fa-bars ms-1"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                <li class="nav-item"><a class="nav-link" href="#about">Acerca de nosotros</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'my_app:destinos-list' %}">Viajes</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'accommodation:accommodation-list' %}">Hospedajes</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'forum:forum-list' %}">Foro</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contact">Contacto</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- Masthead-->
+<header class="masthead">
+    <div class="container">
+        <div class="masthead-subheading">¡Bienvenidos a la sección viajes!</div>
+        <div class="masthead-heading text-uppercase">Mochilas Viajeras</div>
+        <a class="btn btn-primary btn-xl text-uppercase" href="#travel">Viajes 2022-2023</a>
+        
+    </div>
+</header>
+
+<!-- Travels-->
+<section class="page-section" id="travels">
+    <div class="container">
+        <div class="text-center">
+            <h2 class="section-heading text-uppercase">Nuestros Destinos</h2>
+            <h3 class="section-subheading text-muted">En la siguiente sección encontrarás nuestros viajes vigentes.</h3>
+        </div>
+        <div class="row text-center">
+            <div class="col-md-4">
+                <span class="fa-stack fa-4x">
+                    <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                    <img class="img-fluid" src="assets/img/travel/bariloche.jpg" alt="..." />>
+                </span>
+                <h4 class="my-3">Bariloche: Diciembre 2022</h4>
+                <p class="text-muted">Temperaturas agradables que oscilan en los treinta grados, lagos de agua espejada donde refrescarse, mucho bosque y un cielo sin nubes hacen de Bariloche una ciudad increible para pasar el verano. El día 25 de diciembre iremos a donar juguetes al Hogar de Niños Pasitos en el centro de la ciudad.</p>
+            </div>
+            <div class="col-md-4">
+                <span class="fa-stack fa-4x">
+                    <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                    <img class="img-fluid" src="assets/img/travel/mendoza.jpg" alt="..." />>
+                </span>
+                <h4 class="my-3">San Rafael: Enero 2023</h4>
+                <p class="text-muted">Vino de primera calidad, actividades reacreativas al aire libre como el rafting, trekking, y recorridos a caballo son sólo algunas de las actividades que te ofrecerá esta bellísima ciudad. El 6 de enero donaremos juguetes frente a la Municipalidad del Centro Cívico. Están todos invitamos a participar de este evento. </p>
+            </div>
+            <div class="col-md-4">
+                <span class="fa-stack fa-4x">
+                    <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                    <img class="img-fluid" src="assets/img/travel/norte.jpg" alt="..." />>
+                </span>
+                <h4 class="my-3">Norte Argentino: Mayo 2023</h4>
+                <p class="text-muted">Empezaremos nuestro recorrido a dedo desde Santiago del Estero, pasando por Salta y Jujuy hasta llegar a la Quiaca, donde culminaremos nuestro viaje en las montañas a la intemperie y nos conectaremos más con la naturaleza. Ésto estará bajo el marco de la campaña sobre conscientización de agua potable. </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}

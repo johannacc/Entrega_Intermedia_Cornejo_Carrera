@@ -40,33 +40,7 @@ class AccommodationForm(forms.ModelForm):
         ),
     )
 
-    contact = forms.IntegerField(
-        label="Contacto:",
-        required=False,
-        widget=forms.TextInput(
-            attrs={
-                "class": "accommodation-contact",
-                "placeholder": "Telefono de contacto",
-                "required": "True",
-            }
-        ),
-    )
-
-    price = forms.FloatField(
-        label="Precio:",
-        required=False,
-        widget=forms.TextInput(
-            attrs={
-                "class": "accommodation-precio",
-                "placeholder": "Precio promedio del alojamiento",
-                "required": "True",
-            }
-        ),
-    )
-
-
-
-
+    
     class Meta:
         model = Accommodation
         fields = ["name", "location", "description"]
