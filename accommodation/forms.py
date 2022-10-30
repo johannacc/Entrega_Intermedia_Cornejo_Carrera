@@ -29,7 +29,7 @@ class AccommodationForm(forms.ModelForm):
     )
     
     contact = forms.CharField(
-        label="Telefono de contacto",
+        label="Teléfono de contacto",
         required=False,
         widget=forms.TextInput(
             attrs={
