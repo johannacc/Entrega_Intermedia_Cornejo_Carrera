@@ -1,16 +1,9 @@
 {% extends "home/index.html" %}
 {% load static %}
 
-<!-- ckeditor-->
-{% block extrahead %}
-<script>window.CKEDITOR_BASEPATH = '/static/ckeditor/ckeditor/';</script>
-{{ block.super }}
+{% block mochilas_viajeras_title %}
+Accommodation detail
 {% endblock %}
-<!-- ckeditor-->
-
-{% block mochilas_viajeras_title %
-Accommodation
-
 
 {% block mochilas_viajeras_content %}
 </title>
@@ -55,13 +48,26 @@ Accommodation
     </div>
 </header>
 
-    <div>
-        <form action="" method="POST">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <input type="submit" class="btn btn-primary" value="Guardar alojamiento" />
-        </form>
-    </div>
-    <!-- Divider-->
-    <hr class="my-4" />
+<!-- Post preview-->
+<div class="post-preview">
+    <h3 class="post-subtitle">Alojamiento: {{ accommodation.name }}</h3>
+    
+    <p class="post-meta">
+        Creado por
+        <a href="#!">Start Bootstrap</a> 
+        en {{ accommodation.created_at }}
+        <br>
+        Última fecha de actualización {{ accommodation.updated_at }}
+    </p>
+    <p class="card-text ">{{ accommodation.description|safe }}</p> <!-- ckeditor-->
+    <p style="text-align: center">
+        <a href="{% url 'accommodation:accommodation-update' accommodation.id %}">
+            <i class="fa fa-pencil" style="color: #1c1c91;"></i> Editar
+        </a>
+        &ensp; | &ensp;
+        <a href="{% url 'accommodation:accommodation-delete' accommodation.id %}">
+            <i class="fa fa-trash" style="color: #881a1a;"></i> Eliminar 
+        </a>
+    </p>
+</div>
 {% endblock %}

@@ -1,16 +1,9 @@
 {% extends "home/index.html" %}
 {% load static %}
 
-<!-- ckeditor-->
-{% block extrahead %}
-<script>window.CKEDITOR_BASEPATH = '/static/ckeditor/ckeditor/';</script>
-{{ block.super }}
+{% block mochilas_viajeras_title %}
+Course delete
 {% endblock %}
-<!-- ckeditor-->
-
-{% block mochilas_viajeras_title %
-Accommodation
-
 
 {% block mochilas_viajeras_content %}
 </title>
@@ -51,17 +44,20 @@ Accommodation
         <div class="masthead-subheading">¡Conoce más de la sección alojamientos!</div>
         <div class="masthead-heading text-uppercase">Mochilas Viajeras</div>
         <a class="btn btn-primary btn-xl text-uppercase" href="{% url 'accommodation:accommodation-add' %}">COMPLETE FORMULARIO</a>
-        
+
     </div>
 </header>
 
-    <div>
-        <form action="" method="POST">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <input type="submit" class="btn btn-primary" value="Guardar alojamiento" />
-        </form>
-    </div>
-    <!-- Divider-->
-    <hr class="my-4" />
+
+<h1>{{ accommodation.name }}</h1>
+<span class="subheading">Eliminar Alojamiento</span>        
+<h1>Estás seguro de eliminar el Alojamiento: {{ accommodation.name }}?</h1>
+
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <input class="btn btn-danger" type="submit" value="Si, eliminar.">
+    <a class="btn btn-primary" href="{% url 'accommodation:accommodation-list' %}" >Cancelar</a>
+</form>
+
 {% endblock %}

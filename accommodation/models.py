@@ -1,12 +1,13 @@
 from django.db import models
 from ckeditor.fields import RichTextField
+from django.forms import FloatField, IntegerField
 
 class Accommodation(models.Model):
     name = models.CharField(max_length=50)
     location = models.TextField()
     description = RichTextField(null=True, blank=True)
-    
-
+    contact = IntegerField()
+    price = FloatField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

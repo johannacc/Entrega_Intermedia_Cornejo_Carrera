@@ -11,19 +11,42 @@ class AccommodationForm(forms.ModelForm):
         widget=forms.TextInput(
             attrs={
                 "class": "accommodation-name",
-                "placeholder": "Nombre del alojamiento",
+                "placeholder": "Ingrese el nombre",
                 "required": "True",
             }
         ),
     )
-    Location = forms.CharField(
+    location = forms.CharField(
         label="Ubicación del alojamiento",
         required=False,
         widget=forms.TextInput(
             attrs={
                 "class": "accommodation-location",
-                "placeholder": "Ubicación del alojamiento",
+                "placeholder": "Ingrese la ubicación",
                 "required": "True",
+            }
+        ),
+    )
+    
+    contact = forms.CharField(
+        label="Telefono de contacto",
+        required=False,
+        widget=forms.TextInput(
+            attrs={
+                "class": "accommodation-contact",
+                "placeholder": "Ingrese un número de contacto ",
+                "required": "False",
+            }
+        ),
+    )
+    price = forms.CharField(
+        label="Precio",
+        required=False,
+        widget=forms.TextInput(
+            attrs={
+                "class": "accommodation-price",
+                "placeholder": "Ingrese el precio por noche ",
+                "required": "False",
             }
         ),
     )
@@ -34,7 +57,7 @@ class AccommodationForm(forms.ModelForm):
         widget=CKEditorWidget(
             attrs={
                 "class": "accommodation-description",
-                "placeholder": "Descripcion del alojamiento",
+                "placeholder": "su opinión nos interesa",
                 "required": "True",
             }
         ),
@@ -43,4 +66,4 @@ class AccommodationForm(forms.ModelForm):
     
     class Meta:
         model = Accommodation
-        fields = ["name", "location", "description"]
+        fields = ["name", "contact", "price", "description" ]
