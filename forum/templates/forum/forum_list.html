@@ -109,5 +109,72 @@ Forum list
                 <a class="btn btn-primary btn-xl text-uppercase" href="{% url 'forum:forum-add' %}">Deje una reseña sobre su Viaje</a>
         </div>
     </section>
+
+    {% for forum in forum_list %}
+    <!-- Post preview-->
+    <div class="post-preview">
+        <a href="{% url 'forum:forum-detail' forum.id %}">
+            <h2 class="post-title">Este es mensaje de {{ forum.name }}</h2>
+        </a>
+        <p class="post-meta">
+            Creado por
+            <a href="#!">Start Bootstrap</a> 
+            en {{ forum.created_at }}
+        </p>
+    </div>
+    <!-- Divider-->
+    <hr class="my-4" />
+{% endfor %}
+    
+<!--Pagination-->
+<div class="container p-4">
+    <div class="pagination justify-content-center">
+        <span class="step-links">
+            {% if forum_list.has_previous %}
+                <a href="?page=1">&laquo; first</a> |
+                <a href="?page={{ forum_list.previous_page_number }}">previous</a> |
+            {% endif %}
+    
+            {% if forum_list..num_pages > 1 %}
+            <span class="current">
+                Page {{ forum_list.number }} of {{ forum_list..num_pages }} |
+            </span>
+            {% endif %}
+    
+            {% if forum_list.has_next %}
+                <a href="?page={{ forum_list.next_page_number }}">next</a> |
+                <a href="?page={{ forum_list..num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+</div>
+<!--end of Pagination-->
+    
+<!--Pagination Class Based Views-->
+{% if is_paginated %}
+<div class="container p-4">
+    <div class="pagination justify-content-center">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; first</a> |
+                <a href="?page={{ accommodation_list.previous_page_number }}">previous</a> |
+            {% endif %}
+    
+            {% if page_obj..num_pages > 1 %}
+            <span class="current">
+                 Page {{ page_obj.number }} of {{ page_obj..num_pages }} |
+            </span>
+            {% endif %}
+    
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">next</a> |
+                <a href="?page={{ page_obj..num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+</div>
+{% endif %}
+<!--end of Pagination-->
+         
 {% endblock %}
 

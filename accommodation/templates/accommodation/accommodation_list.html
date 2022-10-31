@@ -106,15 +106,15 @@ Accommodation list
                 <a href="?page={{ accommodation_list.previous_page_number }}">previous</a> |
             {% endif %}
     
-            {% if accommodation_list.paginator.num_pages > 1 %}
+            {% if accommodation_list..num_pages > 1 %}
             <span class="current">
-                Page {{ accommodation_list.number }} of {{ accommodation_list.paginator.num_pages }} |
+                Page {{ accommodation_list.number }} of {{ accommodation_list..num_pages }} |
             </span>
             {% endif %}
     
             {% if accommodation_list.has_next %}
                 <a href="?page={{ accommodation_list.next_page_number }}">next</a> |
-                <a href="?page={{ accommodation_list.paginator.num_pages }}">last &raquo;</a>
+                <a href="?page={{ accommodation_list..num_pages }}">last &raquo;</a>
             {% endif %}
         </span>
     </div>
@@ -131,15 +131,15 @@ Accommodation list
                 <a href="?page={{ accommodation_list.previous_page_number }}">previous</a> |
             {% endif %}
     
-            {% if page_obj.paginator.num_pages > 1 %}
+            {% if page_obj..num_pages > 1 %}
             <span class="current">
-                 Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }} |
+                 Page {{ page_obj.number }} of {{ page_obj..num_pages }} |
             </span>
             {% endif %}
     
             {% if page_obj.has_next %}
                 <a href="?page={{ page_obj.next_page_number }}">next</a> |
-                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                <a href="?page={{ page_obj..num_pages }}">last &raquo;</a>
             {% endif %}
         </span>
     </div>

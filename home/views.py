@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.db.models import Q
-from accommodation.views import accommodations
 
-from my_app.models import Viaje
+
+from accommodation.models import Accommodation
 
 def index(request):
     return render(
@@ -16,8 +16,8 @@ def search(request):
     context_dict = dict()
     if search_param:
         query = Q(name__contains=search_param)
-        query.add(Q(code__contains=search_param), Q.OR)
-        accommodations = Viaje.objects.filter(query)
+        query.add(Q(location__contains=search_param), Q.OR)
+        accommodations = Accommodation.objects.filter(query)
         context_dict.update(
             {
                 "accommodations": accommodations,
@@ -27,5 +27,5 @@ def search(request):
     return render(
         request=request,
         context=context_dict,
-        template_name="home/index.html",
+        template_name="accommodation/accommodation_list.html",
     )

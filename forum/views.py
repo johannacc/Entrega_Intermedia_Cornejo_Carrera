@@ -145,7 +145,7 @@ class ForumCreateView(CreateView):
     success_url = reverse_lazy("forum:forum-list")
 
     form_class = ForumForm
-    fields = ["name", "location","contact","price", "description"]
+    fields = ["name", "email", "description"]
 
     def form_valid(self, form):
         """Filter to avoid duplicate accommodations"""
@@ -170,7 +170,7 @@ class ForumCreateView(CreateView):
 
 class ForumUpdateView(UpdateView):
     model = Forum
-    fields = ["name", "location", "description"]
+    fields = ["name", "email", "description"]
 
     def get_success_url(self):
         forum_id = self.kwargs["pk"]

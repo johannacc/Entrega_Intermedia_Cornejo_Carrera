@@ -171,7 +171,7 @@ class AccommodationCreateView(CreateView):
 
 class AccommodationUpdateView(UpdateView):
     model = Accommodation
-    fields = ["name", "location", "description"]
+    fields = ["name", "name", "description"]
 
     def get_success_url(self):
         accommodation_id = self.kwargs["pk"]

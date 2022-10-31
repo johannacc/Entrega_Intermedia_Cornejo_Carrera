@@ -12,4 +12,4 @@ class Accommodation(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f"name: {self.name} | location: {self.location} | description: {self.description}"
+        return f"name: {self.name} | location: {self.location} | description: {self.description} | contact: {self.contact} | price: {self.price}"

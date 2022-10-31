@@ -34,7 +34,7 @@ class AccommodationForm(forms.ModelForm):
         widget=forms.TextInput(
             attrs={
                 "class": "accommodation-contact",
-                "placeholder": "Ingrese un número de contacto ",
+                "placeholder": "Ingrese un número",
                 "required": "False",
             }
         ),
@@ -45,7 +45,7 @@ class AccommodationForm(forms.ModelForm):
         widget=forms.TextInput(
             attrs={
                 "class": "accommodation-price",
-                "placeholder": "Ingrese el precio por noche ",
+                "placeholder": "Ingrese precio por noche ",
                 "required": "False",
             }
         ),
@@ -66,4 +66,4 @@ class AccommodationForm(forms.ModelForm):
     
     class Meta:
         model = Accommodation
-        fields = ["name", "contact", "price", "description" ]
+        fields = ["name", "location", "contact", "price", "description" ]

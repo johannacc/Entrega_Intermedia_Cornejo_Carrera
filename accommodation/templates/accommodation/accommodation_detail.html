@@ -58,8 +58,17 @@ Accommodation detail
         en {{ accommodation.created_at }}
         <br>
         Última fecha de actualización {{ accommodation.updated_at }}
+        <br>
+        Ubicado en: {{ accommodation.location }}
+        <br>
+        Teléfono de contacto {{ accommodation.contact }}
+        <br>
+        Precio {{ accommodation.price }}
+        <br>   
+             
     </p>
-    <p class="card-text ">{{ accommodation.description|safe }}</p> <!-- ckeditor-->
+    
+    <p class="card-text ">Comentario: {{ accommodation.description|safe }}</p> <!-- ckeditor-->
     <p style="text-align: center">
         <a href="{% url 'accommodation:accommodation-update' accommodation.id %}">
             <i class="fa fa-pencil" style="color: #1c1c91;"></i> Editar
