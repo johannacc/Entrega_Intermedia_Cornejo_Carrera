@@ -2,10 +2,11 @@
 {% load static %}
 
 {% block mochilas_viajeras_title %}
-Course delete
+Viaje detail
 {% endblock %}
 
 {% block mochilas_viajeras_content %}
+
 </title>
 <!-- Favicon-->
 <link rel="icon" type="image/x-icon" href="{% static 'home/assets/favicon.ico' %}" />
@@ -33,7 +34,6 @@ Course delete
                 <li class="nav-item"><a class="nav-link" href="{% url 'accommodation:accommodation-list' %}">Hospedajes</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'forum:forum-list' %}">Foro</a></li>
                 <li class="nav-item"><a class="nav-link" href="#contact">Contacto</a></li>
-                
             </ul>
         </div>
     </div>
@@ -41,23 +41,34 @@ Course delete
 <!-- Masthead-->
 <header class="masthead">
     <div class="container">
-        <div class="masthead-subheading">¡Conoce más de la sección alojamientos!</div>
+        <div class="masthead-subheading">¡Sumate a nuestros viajes!</div>
         <div class="masthead-heading text-uppercase">Mochilas Viajeras</div>
-        <a class="btn btn-primary btn-xl text-uppercase" href="{% url 'accommodation:accommodation-add' %}">COMPLETE FORMULARIO</a>
-
+        <a class="btn btn-primary btn-xl text-uppercase" href="#travel">Viajes 2022-2023</a>
+        
     </div>
 </header>
 
-
-<h1>{{ accommodation.name }}</h1>
-<span class="subheading">Eliminar Alojamiento</span>        
-<h1>Estás seguro de eliminar el Alojamiento: {{ accommodation.name }}?</h1>
-
-
-<form action="" method="POST">
-    {% csrf_token %}
-    <input class="btn btn-danger" type="submit" value="Si, eliminar.">
-    <a class="btn btn-primary" href="{% url 'accommodation:accommodation-list' %}" >Cancelar</a>
-</form>
+<!-- Post preview-->
+<div class="post-preview">
+    <h3 class="post-subtitle">Viaje: {{ my_app.name }}</h3>
+    
+    <p class="post-meta">
+        Creado por
+        <a href="#!">Start Bootstrap</a> 
+        en {{ my_app.created_at }}
+        <br>
+        Última fecha de actualización {{ my_app.updated_at }}
+    </p>
+    <p class="card-text ">{{ my_app.description|safe }}</p> <!-- ckeditor-->
+    <p style="text-align: center">
+        <a href="{% url 'my_app:destino-update' destino.id %}">
+            <i class="fa fa-pencil" style="color: #1c1c91;"></i> Editar
+        </a>
+        &ensp; | &ensp;
+        <a href="{% url 'my_app:destino-delete' destino.id %}">
+            <i class="fa fa-trash" style="color: #881a1a;"></i> Eliminar 
+        </a>
+    </p>
+</div>
 
 {% endblock %}

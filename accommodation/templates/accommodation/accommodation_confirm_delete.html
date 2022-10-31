@@ -2,11 +2,10 @@
 {% load static %}
 
 {% block mochilas_viajeras_title %}
-Viaje detail
+Course delete
 {% endblock %}
 
 {% block mochilas_viajeras_content %}
-
 </title>
 <!-- Favicon-->
 <link rel="icon" type="image/x-icon" href="{% static 'home/assets/favicon.ico' %}" />
@@ -34,6 +33,7 @@ Viaje detail
                 <li class="nav-item"><a class="nav-link" href="{% url 'accommodation:accommodation-list' %}">Hospedajes</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'forum:forum-list' %}">Foro</a></li>
                 <li class="nav-item"><a class="nav-link" href="#contact">Contacto</a></li>
+                
             </ul>
         </div>
     </div>
@@ -41,20 +41,23 @@ Viaje detail
 <!-- Masthead-->
 <header class="masthead">
     <div class="container">
-        <div class="masthead-subheading">¡Sumate a nuestros viajes!</div>
+        <div class="masthead-subheading">¡Conoce más de la sección alojamientos!</div>
         <div class="masthead-heading text-uppercase">Mochilas Viajeras</div>
-        <a class="btn btn-primary btn-xl text-uppercase" href="#travel">Viajes 2022-2023</a>
-        
+        <a class="btn btn-primary btn-xl text-uppercase" href="{% url 'accommodation:accommodation-add' %}">COMPLETE FORMULARIO</a>
+
     </div>
 </header>
 
-<div>
-    <form action="" method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" class="btn btn-primary" value="Guardar viaje" />
-    </form>
-</div>
-<!-- Divider-->
-<hr class="my-4" />
+
+<h1>{{ accommodation.name }}</h1>
+<span class="subheading">Eliminar Alojamiento</span>        
+<h1>¿Estás seguro de eliminar el Alojamiento?: {{ accommodation.name }}?</h1>
+
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <input class="btn btn-danger" type="submit" value="Si, eliminar.">
+    <a class="btn btn-primary" href="{% url 'accommodation:accommodation-list' %}" >Cancelar</a>
+</form>
+
 {% endblock %}

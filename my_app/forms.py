@@ -16,7 +16,7 @@ class ViajeForm(forms.ModelForm):
             }
         ),
     )
-    Year = forms.IntegerField(
+    year = forms.IntegerField(
         label="Fecha",
         required=False,
         widget=forms.TextInput(

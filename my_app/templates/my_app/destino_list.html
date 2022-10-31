@@ -43,7 +43,7 @@ Destinos list
     <div class="container">
         <div class="masthead-subheading">¡Sumate a nuestros viajes!</div>
         <div class="masthead-heading text-uppercase">Mochilas Viajeras</div>
-        <a class="btn btn-primary btn-xl text-uppercase" href="#travel">Viajes 2022-2023</a>
+        <a class="btn btn-primary btn-xl text-uppercase" href="{% url 'my_app:destino-add' %}">Viajes 2022-2023</a>
         
     </div>
 </header>
@@ -80,6 +80,72 @@ Destinos list
         </div>
     </div>
 </section>
+
+{% for destino in destino_list %}
+    <!-- Post preview-->
+    <div class="post-preview">
+        <a href="{% url 'my_app:destino-detail' destino.id %}">
+            <h2 class="post-title">Este es el viaje a {{ destino.name }}</h2>
+        </a>
+        <p class="post-meta">
+            Creado por
+            <a href="#!">Start Bootstrap</a> 
+            en {{ my_app.created_at }}
+        </p>
+    </div>
+    <!-- Divider-->
+    <hr class="my-4" />
+{% endfor %}
+    
+<!--Pagination-->
+<div class="container p-4">
+    <div class="pagination justify-content-center">
+        <span class="step-links">
+            {% if destino_list.has_previous %}
+                <a href="?page=1">&laquo; first</a> |
+                <a href="?page={{ destino_list.previous_page_number }}">previous</a> |
+            {% endif %}
+    
+            {% if destino_list.paginator.num_pages > 1 %}
+            <span class="current">
+                Page {{ destino_list.number }} of {{ destino_list.paginator.num_pages }} |
+            </span>
+            {% endif %}
+    
+            {% if destino_list.has_next %}
+                <a href="?page={{ destino_list.next_page_number }}">next</a> |
+                <a href="?page={{ destino_list.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+</div>
+<!--end of Pagination-->
+    
+<!--Pagination Class Based Views-->
+{% if is_paginated %}
+<div class="container p-4">
+    <div class="pagination justify-content-center">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; first</a> |
+                <a href="?page={{ destino_list.previous_page_number }}">previous</a> |
+            {% endif %}
+    
+            {% if page_obj.paginator.num_pages > 1 %}
+            <span class="current">
+                 Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }} |
+            </span>
+            {% endif %}
+    
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">next</a> |
+                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+</div>
+{% endif %}
+<!--end of Pagination-->
 
 
 {% endblock %}
