@@ -46,27 +46,3 @@ Forum list
         <div class="masthead-heading text-uppercase">Nuestro Foro</div>
         
     </div>
-    <!-- -->
-    <!-- Post preview-->
-<div class="post-preview">
-    <h3 class="post-subtitle">El foro {{ forum.name }}</h3>
-    
-    <p class="post-meta">
-        Creado por
-        <a href="#!">Start Bootstrap</a> 
-        en {{ forum.created_at }}
-        <br>
-        Última fecha de actualización {{ forum.updated_at }}
-    </p>
-    <p class="card-text ">{{ forum1.description|safe }}</p> <!-- ckeditor-->
-    <p style="text-align: center">
-        <a href="{% url 'forum:forum-update' forum.id %}">
-            <i class="fa fa-pencil" style="color: #1c1c91;"></i> Editar
-        </a>
-        &ensp; | &ensp;
-        <a href="{% url 'forum:forum-delete' forum.id %}">
-            <i class="fa fa-trash" style="color: #881a1a;"></i> Eliminar 
-        </a>
-    </p>
-</div>
-{% endblock %}

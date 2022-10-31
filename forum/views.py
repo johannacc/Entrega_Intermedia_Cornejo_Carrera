@@ -1,6 +1,7 @@
 from django.contrib import messages
 from django.shortcuts import render
 from django.core.paginator import Paginator
+from django.forms.models import model_to_dict
 from forum.models import Forum
 
 
@@ -57,5 +58,126 @@ def create_forum(request):
        request=request,
        context=context_dict,
        template_name="forum/forum_form.html",
-   )    
+   ) 
+      
+def forum_detail(request, pk: int):
+    return render(
+        request=request,
+        context={"forum": Forum.objects.get(pk=pk)},
+        template_name="forum/forum_detail.html",
+    )
+
+
+def forum_update(request, pk: int):
+    forum = Forum.objects.get(pk=pk)
+
+    if request.method == "POST":
+        forum_form = ForumForm(request.POST)
+        if forum_form.is_valid():
+            data = forum_form.cleaned_data
+            forum.name = data["name"]
+            forum.email = data["email"]
+            forum.contact = data["contact"]
+            forum.description = data["description"]
+            forum.save()
+
+            return render(
+                request=request,
+                context={"forum": forum},
+                template_name="forum/forum_detail.html",
+            )
+
+    forum_form = ForumForm(model_to_dict(forum))
+    context_dict = {
+        "forum": forum,
+        "form": forum_form,
+    }
+    return render(
+        request=request,
+        context=context_dict,
+        template_name="forum/forum_form.html",
+    )
+
+
+def forum_delete(request, pk: int):
+    forum = Forum.objects.get(pk=pk)
+    if request.method == "POST":
+        forum.delete()
+
+        forum = Forum.objects.all()
+        context_dict = {"forum_list": forum}
+        return render(
+            request=request,
+            context=context_dict,
+            template_name="forum/forum_list.html",
+        )
+
+    context_dict = {
+        "forum": forum,
+    }
+    return render(
+        request=request,
+        context=context_dict,
+        template_name="forum/forum_confirm_delete.html",
+    )
+
+from django.core.exceptions import ValidationError
+from django.urls import reverse_lazy
+from django.views.generic import ListView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+
+from forum.models import Forum
+
+
+class ForumListView(ListView):
+    model = Forum
+    paginate_by = 3
+
+
+class ForumDetailView(DetailView):
+    model = Forum
+    fields = ["name", "email","contact", "description"]
+
+
+class ForumCreateView(CreateView):
+    model = Forum
+    success_url = reverse_lazy("forum:forum-list")
+
+    form_class = ForumForm
+    fields = ["name", "location","contact","price", "description"]
+
+    def form_valid(self, form):
+        """Filter to avoid duplicate accommodations"""
+        data = form.cleaned_data
+        actual_objects = Forum.objects.filter(
+            name=data["name"],
+        ).count()
+        if actual_objects:
+            messages.error(
+                self.request,
+                f"El alojamiento {data['name']} ya está registrado",
+            )
+            form.add_error("name", ValidationError("Acción no válida"))
+            return super().form_invalid(form)
+        else:
+            messages.success(
+                self.request,
+                f"Alojamiento {data['name']} agregado exitosamente!",
+            )
+            return super().form_valid(form)
+
+
+class ForumUpdateView(UpdateView):
+    model = Forum
+    fields = ["name", "location", "description"]
+
+    def get_success_url(self):
+        forum_id = self.kwargs["pk"]
+        return reverse_lazy("forum:forum-detail", kwargs={"pk": forum_id})
+
+
+class ForumDeleteView(DeleteView):
+    model = Forum
+    success_url = reverse_lazy("forum:forum-list")
     
